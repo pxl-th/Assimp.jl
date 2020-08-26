@@ -1,0 +1,23 @@
+name = "Assimp"
+uuid = "079381af-6941-5802-8ad5-fb13e7f1c93a"
+authors = ["Gnimuc <qiyupei@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
+Clang = "40e3b903-d033-50b4-a0cc-940c62c95e31"
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
+ImageMagick = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
+Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
+Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+assimp_win_jll = "fe2041e4-48f9-56de-9ac5-7523ba92ef05"
+
+[compat]
+julia = "1.4"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
