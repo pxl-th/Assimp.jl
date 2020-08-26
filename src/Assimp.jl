@@ -19,7 +19,8 @@ end
 # TODO create macro to construct material from these properties
 const TEXTURE_TYPES = (
     aiTextureType_DIFFUSE, aiTextureType_SPECULAR, aiTextureType_AMBIENT,
-    aiTextureType_SHININESS, aiTextureType_HEIGHT, aiTextureType_NORMALS)
+    aiTextureType_SHININESS, aiTextureType_HEIGHT, aiTextureType_NORMALS,
+    aiTextureType_DISPLACEMENT, aiTextureType_AMBIENT_OCCLUSION)
 const COLOR_TYPES = (:specular, :diffuse, :ambient, :emissive)
 const MATERIAL_SCALARS = (
     :shininess, :shinpercent, :opacity, :transparencyfactor,
@@ -160,9 +161,9 @@ end
 #         raw"C:\Users\tonys\projects\3d-models\cat\12221_Cat_v1_l3.obj",
 #         raw"C:\Users\tonys\projects\3d-models\advanced-primitive\sphere.obj"]
 #     flags = aiProcess_JoinIdenticalVertices | aiProcess_ImproveCacheLocality
-#     for path in paths[1:end - 1]
+#     for path in paths
 #         println("Loading ", path)
-#         model = load(path, flags; default_flags=true)
+#         model = load(path, flags)
 #         println(model)
 #         println(repeat('=', 20))
 #     end
@@ -171,7 +172,6 @@ end
 #         raw"C:\Users\tonys\projects\3d-models\rotated_strip_point_cloud\scene.gltf",
 #         raw"C:\Users\tonys\projects\3d-models\central_park_hybrid_point_cloud_model\scene.gltf",
 #         raw"C:\Users\tonys\projects\3d-models\central_park_bridge_point_cloud\scene.gltf"]
-
 #     println("=== Point cloud loading === ")
 #     for path in point_clouds
 #         println("Loading ", path)
