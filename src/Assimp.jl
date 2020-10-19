@@ -20,14 +20,17 @@ end
 const TEXTURE_TYPES = (
     aiTextureType_DIFFUSE, aiTextureType_SPECULAR, aiTextureType_AMBIENT,
     aiTextureType_SHININESS, aiTextureType_HEIGHT, aiTextureType_NORMALS,
-    aiTextureType_DISPLACEMENT, aiTextureType_AMBIENT_OCCLUSION)
+    aiTextureType_DISPLACEMENT, aiTextureType_AMBIENT_OCCLUSION,
+)
 const COLOR_TYPES = (:specular, :diffuse, :ambient, :emissive)
 const MATERIAL_SCALARS = (
     :shininess, :shinpercent, :opacity, :transparencyfactor,
-    :reflectivity, :refracti, :bumpscaling)
+    :reflectivity, :refracti, :bumpscaling,
+)
 const PRIMITIVES = (
     (aiPrimitiveType_POINT, 1), (aiPrimitiveType_LINE, 2),
-    (aiPrimitiveType_TRIANGLE, 3))
+    (aiPrimitiveType_TRIANGLE, 3),
+)
 
 include("types.jl")
 include("repr.jl")
@@ -41,9 +44,8 @@ end
 to_string(s::aiString)::String = String(UInt8[s.data[1:s.length]...])
 to_string(s::NTuple)::String = String(UInt8[s...])
 
-process_uvw(raw::aiVector3D, uvw_type::Type{Vec2f0}) = Vec2f0(raw.x, raw.y)
-process_uvw(raw::aiVector3D, uvw_type::Type{Vec3f0}) =
-    Vec3f0(raw.x, raw.y, raw.z)
+process_uvw(raw::aiVector3D, ::Type{Vec2f0}) = Vec2f0(raw.x, raw.y)
+process_uvw(raw::aiVector3D, ::Type{Vec3f0}) = Vec3f0(raw.x, raw.y, raw.z)
 
 to_vec3f0(raw::aiVector3D) = Vec3f0(raw.x, raw.y, raw.z)
 to_point3f0(raw::aiVector3D) = Point3f0(raw.x, raw.y, raw.z)
@@ -152,34 +154,5 @@ function load(
     aiReleaseImport(scene_ptr)
     Scene(node, materials, path)
 end
-
-# function main()
-#     paths = String[
-#         raw"C:\Users\tonys\projects\3d-models\bowl-of-candles\source\Bowl_Candles.fbx",
-#         raw"C:\Users\tonys\projects\3d-models\vehicle-renault-12\source\VEHICLE - RENAULT 12.fbx",
-#         raw"C:\Users\tonys\projects\3d-models\king\source\King_01.obj",
-#         raw"C:\Users\tonys\projects\3d-models\cat\12221_Cat_v1_l3.obj",
-#         raw"C:\Users\tonys\projects\3d-models\advanced-primitive\sphere.obj"]
-#     flags = aiProcess_JoinIdenticalVertices | aiProcess_ImproveCacheLocality
-#     for path in paths
-#         println("Loading ", path)
-#         model = load(path, flags)
-#         println(model)
-#         println(repeat('=', 20))
-#     end
-
-#     point_clouds = String[
-#         raw"C:\Users\tonys\projects\3d-models\rotated_strip_point_cloud\scene.gltf",
-#         raw"C:\Users\tonys\projects\3d-models\central_park_hybrid_point_cloud_model\scene.gltf",
-#         raw"C:\Users\tonys\projects\3d-models\central_park_bridge_point_cloud\scene.gltf"]
-#     println("=== Point cloud loading === ")
-#     for path in point_clouds
-#         println("Loading ", path)
-#         model = load(path; default_flags=false)
-#         println(model)
-#         println(repeat('=', 20))
-#     end
-# end
-# main()
 
 end

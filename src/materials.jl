@@ -35,7 +35,7 @@ end
 function load_embedded_texture(data::Ptr{aiTexel}, width::UInt32, height::UInt32)
     texture = Array{ColorTypes.RGBA, 2}(undef, width, height)
     texel_id = 1
-    for i in 1:width, j in 1:height
+    @inbounds for i in 1:width, j in 1:height
         ai_texel = unsafe_load(data, texel_id); texel_id += 1
         texture[i, j] = ColorTypes.RGBA(ai_texel.b, ai_texel.g, ai_texel.r, ai_texel.a)
         # texture[i, j] = ColorTypes.RGBA(ai_texel.r, ai_texel.g, ai_texel.b, ai_texel.a)
