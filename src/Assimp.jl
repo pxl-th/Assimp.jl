@@ -18,9 +18,23 @@ end
 
 # TODO create macro to construct material from these properties
 const TEXTURE_TYPES = (
-    aiTextureType_DIFFUSE, aiTextureType_SPECULAR, aiTextureType_AMBIENT,
-    aiTextureType_SHININESS, aiTextureType_HEIGHT, aiTextureType_NORMALS,
-    aiTextureType_DISPLACEMENT, aiTextureType_AMBIENT_OCCLUSION,
+    aiTextureType_DIFFUSE,
+    aiTextureType_SPECULAR,
+    aiTextureType_AMBIENT,
+    aiTextureType_EMISSIVE,
+    aiTextureType_HEIGHT,
+    aiTextureType_NORMALS,
+    aiTextureType_SHININESS,
+    aiTextureType_OPACITY,
+    aiTextureType_DISPLACEMENT,
+    aiTextureType_LIGHTMAP,
+    aiTextureType_REFLECTION,
+    aiTextureType_BASE_COLOR,
+    aiTextureType_NORMAL_CAMERA,
+    aiTextureType_EMISSION_COLOR,
+    aiTextureType_METALNESS,
+    aiTextureType_DIFFUSE_ROUGHNESS,
+    aiTextureType_AMBIENT_OCCLUSION,
 )
 const COLOR_TYPES = (:specular, :diffuse, :ambient, :emissive)
 const MATERIAL_SCALARS = (
@@ -29,7 +43,7 @@ const MATERIAL_SCALARS = (
 )
 const PRIMITIVES = (
     (aiPrimitiveType_POINT, 1), (aiPrimitiveType_LINE, 2),
-    (aiPrimitiveType_TRIANGLE, 3),
+    (aiPrimitiveType_TRIANGLE, 3), (aiPrimitiveType_POLYGON, 4),
 )
 
 include("types.jl")
